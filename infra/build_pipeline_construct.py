@@ -40,7 +40,7 @@ class BuildPipelineConstruct(core.Construct):
         super().__init__(scope, construct_id, **kwargs)
 
         # Create source repo from seed bucket/key
-        repo = codecommit.CfnRepository(
+        repo = codecommit.CfnRepository(    
             self,
             "CodeRepo",
             repository_name="sagemaker-{}-{}".format(project_name, construct_id),
@@ -275,6 +275,7 @@ class BuildPipelineConstruct(core.Construct):
             },
         )
 
+        # add_sagemaker_pipeline_target was defined at the bottom
         self.add_sagemaker_pipeline_target(
             drift_rule, event_role, sagemaker_pipeline_arn
         )
