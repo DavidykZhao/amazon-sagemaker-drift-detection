@@ -40,12 +40,13 @@ DeployPipelineStack(
 )
 
 # Create the SC stack
-synth = core.DefaultStackSynthesizer(
-    file_assets_bucket_name=artifact_bucket,
-    generate_bootstrap_version_rule=False,
-    bucket_prefix=artifact_bucket_prefix,
-)
-
-ServiceCatalogStack(app, "drift-service-catalog", synthesizer=synth)
+ServiceCatalogStack(
+    app, 
+    "drift-service-catalog", 
+    synthesizer=core.DefaultStackSynthesizer(
+        file_assets_bucket_name=artifact_bucket,
+        generate_bootstrap_version_rule=False,
+        bucket_prefix=artifact_bucket_prefix,
+))
 
 app.synth()

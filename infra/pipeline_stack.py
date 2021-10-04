@@ -46,6 +46,7 @@ class PipelineStack(core.Stack):
         seed_deploy_key = self.resolve_ssm_parameter("CodeCommitDeployKey")
 
         # Create the s3 artifact (name must be < 63 chars)
+        ##### This is where the artifact_bucket_name get defined. 
         artifact_bucket_name = (
             f"sagemaker-project-{project_id.value_as_string}-{self.region}"
         )
@@ -200,6 +201,7 @@ class PipelineStack(core.Stack):
                 ),
             )
             # # SageMaker needs to manage pipelines, model package groups
+            # Policy --> Role
             sagemaker_policy.attach_to_role(sagemaker_execution_role)
             # Code build needs to query model package groups and artifacts
             sagemaker_policy.attach_to_role(code_build_role)

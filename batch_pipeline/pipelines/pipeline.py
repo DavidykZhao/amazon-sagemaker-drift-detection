@@ -283,6 +283,7 @@ def upload_pipeline(pipeline: Pipeline, default_bucket, base_job_prefix) -> str:
     # Get the pipeline definition
     pipeline_definition_body = pipeline.definition()
     # Upload the pipeline to a unique location in s3 based on git commit and timestamp
+    # this name_from_base func from sagemaker lib is adding a timestamp at the end
     pipeline_key = f"{name_from_base(base_job_prefix)}/pipeline.json"
     S3Uploader.upload_string_as_file_body(
         pipeline_definition_body, f"s3://{default_bucket}/{pipeline_key}"

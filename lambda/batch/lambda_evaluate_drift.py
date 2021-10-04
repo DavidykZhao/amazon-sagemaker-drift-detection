@@ -50,6 +50,11 @@ def get_baseline_drift(feature):
 
 
 def put_cloudwatch_metric(pipeline_name: str, metrics: list):
+    """
+    Args:
+        metrics: this is the output from the 'get_baseline_drift' function
+    
+    """
     for m in metrics:
         logger.info(f'Putting metric: {m["metric_name"]} value: {m["metric_value"]}')
         response = cloudwatch.put_metric_data(

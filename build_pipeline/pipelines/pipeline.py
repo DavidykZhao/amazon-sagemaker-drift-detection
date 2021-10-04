@@ -89,7 +89,7 @@ def get_pipeline(
         default_bucket: the bucket to use for storing the artifacts
         pipeline_name: the bucket to use for storing the artifacts
         model_package_group_name: the model package group name
-        base_job_prefix: the prefix to include after the bucket
+        base_job_prefix: the prefix to include after the bucket; 
     Returns:
         an instance of a pipeline
     """
@@ -102,6 +102,7 @@ def get_pipeline(
     )
     input_data = ParameterString(
         name="InputDataUrl",
+        ## This is where the default training data 
         default_value=f"s3://{default_bucket}/{base_job_prefix}/input/data",
     )
     input_zones = ParameterString(

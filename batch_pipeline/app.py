@@ -104,6 +104,7 @@ def create_pipeline(
     pipeline_definition_key = upload_pipeline(
         pipeline,
         default_bucket=artifact_bucket,
+        # Add 'pipelinedef' to make the name more explicit. It was like "batch-prod-2021-09-22-01-28-44-288/"
         base_job_prefix=f"{project_id}/batch-{stage_name}",
     )
 
